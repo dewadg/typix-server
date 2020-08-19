@@ -10,3 +10,9 @@ import (
 type UserService interface {
 	Find(ctx context.Context, id primitive.ObjectID) (models.User, error)
 }
+
+type RaceService interface {
+	Create(ctx context.Context, data models.Race) (models.Race, error)
+
+	Find(ctx context.Context, id primitive.ObjectID) (models.Race, error)
+}

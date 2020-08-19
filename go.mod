@@ -10,6 +10,7 @@ require (
 	github.com/graphql-go/handler v0.2.3
 	github.com/joho/godotenv v1.3.0
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/mitchellh/mapstructure v1.3.3
 	github.com/nats-io/nats-server/v2 v2.1.7 // indirect
 	github.com/nats-io/nats.go v1.10.0
 	github.com/spf13/cobra v0.0.3

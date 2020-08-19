@@ -14,13 +14,14 @@ func NewGQLHandler(container *internal.Container) (*handler.Handler, error) {
 		Name: "Query",
 		Fields: graphql.Fields{
 			"user": resolvers.FindUser(container.UserService),
+			"race": resolvers.FindRace(container.RaceService),
 		},
 	})
 
 	mutations := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Mutation",
 		Fields: graphql.Fields{
-			"createRace": nil,
+			"createRace": resolvers.CreateRace(container.RaceService),
 		},
 	})
 

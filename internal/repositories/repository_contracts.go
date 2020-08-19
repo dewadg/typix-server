@@ -9,6 +9,8 @@ import (
 
 type UserRepository interface {
 	Find(ctx context.Context, id primitive.ObjectID) (models.User, error)
+
+	GetByIDs(ctx context.Context, ids []primitive.ObjectID) ([]models.User, error)
 }
 
 type RaceRepository interface {

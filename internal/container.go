@@ -7,6 +7,8 @@ import (
 
 type Container struct {
 	MongoUserRepository repositories.UserRepository
+	MongoRaceRepository repositories.RaceRepository
 
 	UserService services.UserService
+	RaceService services.RaceService
 }

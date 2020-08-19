@@ -31,3 +31,20 @@ func (repo *mongoUserRepository) Find(ctx context.Context, id primitive.ObjectID
 
 	return user, err
 }
+
+func (repo *mongoUserRepository) GetByIDs(ctx context.Context, ids []primitive.ObjectID) ([]models.User, error) {
+	cursor, err := repo.db.Collection("users").Find(ctx, bson.M{
+		"_id": bson.M{
+			"$in": ids,
+		},
+		"deletedat": nil,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	var users []models.User
+	err = cursor.All(ctx, &users)
+
+	return users, err
+}
