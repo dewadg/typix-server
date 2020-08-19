@@ -20,3 +20,7 @@ type RaceRepository interface {
 
 	Find(ctx context.Context, id primitive.ObjectID) (models.Race, error)
 }
+
+type WordRepository interface {
+	Get(ctx context.Context, count int) ([]string, error)
+}

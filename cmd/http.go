@@ -23,13 +23,15 @@ func ServeHTTP(name string, version string, client *mongo.Client) *cobra.Command
 
 	mongoUserRepository := repositories.NewMongoUserRepository(mongoDB)
 	mongoRaceRepository := repositories.NewMongoRaceRepository(mongoDB)
+	httpWordRepository := repositories.NewHTTPWordRepository()
 
 	userService := services.NewUserService(mongoUserRepository)
-	raceService := services.NewRaceService(mongoRaceRepository, mongoUserRepository)
+	raceService := services.NewRaceService(mongoRaceRepository, mongoUserRepository, httpWordRepository)
 
 	container := internal.Container{
 		MongoUserRepository: mongoUserRepository,
 		MongoRaceRepository: mongoRaceRepository,
+		HTTPWordRepository:  httpWordRepository,
 		UserService:         userService,
 		RaceService:         raceService,
 	}
