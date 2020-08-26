@@ -21,3 +21,7 @@ func NewUserService(mongoUserRepository repositories.UserRepository) UserService
 func (svc *userService) Find(ctx context.Context, id primitive.ObjectID) (models.User, error) {
 	return svc.mongoUserRepository.Find(ctx, id)
 }
+
+func (svc *userService) Search(ctx context.Context, keyword string) ([]models.User, error) {
+	return svc.mongoUserRepository.Search(ctx, keyword)
+}

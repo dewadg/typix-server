@@ -9,6 +9,8 @@ import (
 
 type UserService interface {
 	Find(ctx context.Context, id primitive.ObjectID) (models.User, error)
+
+	Search(ctx context.Context, keyword string) ([]models.User, error)
 }
 
 type RaceService interface {

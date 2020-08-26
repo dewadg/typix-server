@@ -24,3 +24,21 @@ func FindUser(userService services.UserService) *graphql.Field {
 		},
 	}
 }
+
+func SearchUser(userService services.UserService) *graphql.Field {
+	return &graphql.Field{
+		Type: graphql.NewList(types.UserType),
+		Args: graphql.FieldConfigArgument{
+			"keyword": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.String),
+			},
+		},
+		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+			users, err := userService.Search(p.Context, p.Args["keyword"].(string))
+			if err != nil {
+				return nil, err
+			}
+			return users, nil
+		},
+	}
+}

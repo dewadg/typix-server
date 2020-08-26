@@ -13,8 +13,9 @@ func NewGQLHandler(container *internal.Container) (*handler.Handler, error) {
 	queries := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
-			"user": resolvers.FindUser(container.UserService),
-			"race": resolvers.FindRace(container.RaceService),
+			"user":       resolvers.FindUser(container.UserService),
+			"searchUser": resolvers.SearchUser(container.UserService),
+			"race":       resolvers.FindRace(container.RaceService),
 		},
 	})
 

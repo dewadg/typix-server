@@ -48,3 +48,23 @@ func (repo *mongoUserRepository) GetByIDs(ctx context.Context, ids []primitive.O
 
 	return users, err
 }
+
+func (repo *mongoUserRepository) Search(ctx context.Context, keyword string) ([]models.User, error) {
+	searchFilter := bson.M{
+		"deletedAt": nil,
+		"username": bson.M{
+			"$regex":   keyword,
+			"$options": "i",
+		},
+	}
+
+	cursor, err := repo.db.Collection("users").Find(ctx, searchFilter)
+	if err != nil {
+		return nil, err
+	}
+
+	users := make([]models.User, 0)
+	err = cursor.All(ctx, &users)
+
+	return users, err
+}
