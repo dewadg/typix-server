@@ -51,7 +51,7 @@ func (repo *mongoUserRepository) GetByIDs(ctx context.Context, ids []primitive.O
 
 func (repo *mongoUserRepository) Search(ctx context.Context, keyword string) ([]models.User, error) {
 	searchFilter := bson.M{
-		"deletedAt": nil,
+		"deletedat": nil,
 		"username": bson.M{
 			"$regex":   keyword,
 			"$options": "i",
